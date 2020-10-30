@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>H2 And JDBC</title>
+</head>
+<body>
+	<div>
+		<h1>H2 and JDBC</h1>
+	</div>
+	<div>
+		<table th:if="${studentList != null && studentList != ''}">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Edit</td>
+					<td>Delete</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="s : ${studentList}">
+					<td th:text="${s.name}">Romil</td>
+					<td><a th:href="@{/editStudent/}+${s.id}">Edit</a></td>
+					<td><a th:href="@{/deleteStudent/}+${s.id}">Delete</a></td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div>
+		<form action="" th:action="@{/insertStudent}" method="post" th:object="${student}">
+		
+			<input type="hidden" name="id" th:field="*{id}"/>
+			Name: <input type="text" name="name" th:field="*{name}" />
+			<br>
+			<br><input type="submit" value="Add Student" />
+		
+		</form>
+	</div>
+	
+</body>
+</html>
